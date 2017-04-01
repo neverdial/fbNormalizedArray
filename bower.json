@@ -1,0 +1,30 @@
+{
+  "name": "fbNormalizedArray",
+  "main": "fbNormalizedArray.js",
+  "authors": [
+    "Mohamed Habashy <mohamed.habshey10@gmail.com>"
+  ],
+  "description": "",
+  "keywords": [
+    "firebase",
+    "angularfire",
+    "arrayNormalization"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularfire": "^2.3.0",
+    "angular": "^1.6.4"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.4"
+  }
+}
