@@ -80,7 +80,9 @@ describe('$fbNormalizedArray', function () {
       tick = function () {
         setTimeout(function () {
           $q.defer();
+          $timeout(function () {
             $rootScope.$digest();
+          })
           try {
             $timeout.flush();
           } catch (err) {
