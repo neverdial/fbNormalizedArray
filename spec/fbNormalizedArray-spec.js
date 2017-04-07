@@ -1,31 +1,75 @@
 'use strict';
 
-describe('fbNormalizedArray module', function () {
-  var fb
+
+describe('$fbNormalizedArray', function () {
   beforeAll(function (done) {
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyAD5ZYMiagvgshLD5o8ZFzCtjwlj7JIFws",
-      authDomain: "fbnormalizedarray.firebaseapp.com",
-      databaseURL: "https://fbnormalizedarray.firebaseio.com",
-      projectId: "fbnormalizedarray",
-      storageBucket: "fbnormalizedarray.appspot.com",
-      messagingSenderId: "224585557006"
+      apiKey: "AIzaSyCcB9Ozrh1M-WzrwrSMB6t5y1flL8yXYmY",
+      authDomain: "oss-test.firebaseapp.com",
+      databaseURL: "https://oss-test.firebaseio.com",
+      storageBucket: "oss-test.appspot.com"
     };
     firebase.initializeApp(config);
     console.log("Connected to firebase! ");
-    fb = firebase.database().ref();
+
     done()
 
   })
-  beforeEach(module('fbNormalizedArray'));
 
+  var STUB_DATA = {
+    "projects": {
+      "iRehearse-App": {
+        "James Gardner": {
+          "role": "CTO"
+        },
+        "Marwa": {
+          "role": "Collaborator"
+        },
+        "Mohamed Habashy": {
+          "role": "Lead"
+        }
+      },
+      "iRehearse-Web": {
+        "team": {
+          "-Hynakeqkiyq": {
+            "name": "Mohamed Habashy",
+            "other": "asdasasd",
+            "role": "Collaborator"
+          },
+          "-Hynakewte": {
+            "name": "Sean",
+            "role": "Founder"
+          },
+          "-Hynakewyq": {
+            "name": "James Gardner",
+            "other": "blalbla",
+            "role": "Author"
+          }
+        }
+      }
+    },
+    "users": {
+      "James Gardner": {
+        "email": "jawgardner@gmail.com",
+        "github": "https://github.com/jawgardner"
+      },
+      "Marwa": {
+        "github": "https://github.com/MarwaAbuEssa"
+      },
+      "Mohamed Habashy": {
+        "email": "mohamed.habshey10@gmail.com",
+        "github": "https://github.com/Mohamed-Habshey"
+      }
+    }
+  };
 
   it('should ....',
     function (done) {
 
       inject(function ($fbNormalizedArray, $firebaseArray, $rootScope) {
         //spec body
+      var ref = stubRef();
 
         expect($fbNormalizedArray).toBeDefined();
         var ref1 = fb.child('projects').child("iRehearse-App");
@@ -53,6 +97,8 @@ describe('fbNormalizedArray module', function () {
           });
         expect($fbNormalizedArray).toBeDefined();
         $rootScope.$digest();
+
+
       })
     }, 30000
   );
