@@ -164,6 +164,8 @@ describe('$fbNormalizedArray', function () {
 
 
     });
+  });
+
   function stubRef() {
     return firebase.database().ref().push();
   }
