@@ -95,39 +95,28 @@ describe('$fbNormalizedArray', function () {
   });
 
 
+  describe('Read Query', function () {
+
+
+
+    it('should work on a query', function (done) {
+
       var ref = stubRef();
+      ref.set(STUB_DATA);
 
-        expect($fbNormalizedArray).toBeDefined();
-        var ref1 = fb.child('projects').child("iRehearse-App");
-        var ref2 = fb.child('users');
-        $firebaseArray(ref2).$loaded().then(function name(data) {
-          console.log(JSON.stringify(data));
-        }).catch(function (error) {
-          console.log("Error:", error);
-        });
-         $rootScope.$digest();
-        debugger;
-        console.log($fbNormalizedArray);
-        return new $fbNormalizedArray(ref1, ref2, 'member', 'contact')
-          .then(function (data) {
-            console.log(JSON.stringify(data));
-            expect($fbNormalizedArray).toBeDefined();
-            done();
-          }).catch(function (error) {
-            console.log(JSON.stringify(error));
-            done();
-          }).finally(function () {
+      var ref1 = ref.child('projects').child("iRehearse-App");
+      var ref2 = ref.child('users');
 
-            // calling done for this test to stop waiting for the asynchronous test
-            done();
-          });
-        expect($fbNormalizedArray).toBeDefined();
-        $rootScope.$digest();
+      var arr = new $fbNormalizedArray(ref1, ref2, 'member', 'contact');
 
+      arr.then(function (res) {
+        expect(res[0].$id).toBe("James Gardner")
+        expect(res[0].member.role).toBe("CTO")
+        expect(res[0].contact.email).toBe("jawgardner@gmail.com")
 
+        done();
       })
-    }, 30000
-  );
+    });
 
 
 });
