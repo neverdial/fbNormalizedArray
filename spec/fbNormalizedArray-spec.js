@@ -118,5 +118,30 @@ describe('$fbNormalizedArray', function () {
       })
     });
 
+    it('should work on a foreign Key', function (done) {
+      var ref = stubRef();
+      ref.set(STUB_DATA);
 
+      var ref1 = ref.child('projects').child("iRehearse-Web").child("team");
+      var ref2 = ref.child('users');
+
+      // var arr = $firebaseArray(query).$loaded();
+
+      var arr = new $fbNormalizedArray(ref1, ref2, 'member', 'contact', 'name');
+
+      arr.then(function (res) {
+        expect(res[0].member.name).toBe("Mohamed Habashy");
+        expect(res[0].member.role).toBe("Collaborator");
+        expect(res[0].contact.email).toBe("mohamed.habshey10@gmail.com");
+        expect(res[0].contact.github).toBe("https://github.com/Mohamed-Habshey");
+
+        expect(res[1].member.name).toBe("Sean");
+        expect(res[1].member.role).toBe("Founder");
+        expect(res[1].contact.$value).toEqual(null)
+
+        done();
+      })
+
+
+    });
 });
