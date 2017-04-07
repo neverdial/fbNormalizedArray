@@ -144,4 +144,24 @@ describe('$fbNormalizedArray', function () {
 
 
     });
+
+    it('should work without alias', function (done) {
+      var ref = stubRef();
+      ref.set(STUB_DATA);
+
+      var ref1 = ref.child('projects').child("iRehearse-App");
+      var ref2 = ref.child('users');
+
+      var arr = new $fbNormalizedArray(ref1, ref2);
+
+      arr.then(function (res) {
+        expect(res[0].$id).toBe("James Gardner")
+        expect(res[0].$value.role).toBe("CTO")
+        expect(res[0].$extData.email).toBe("jawgardner@gmail.com")
+
+        done();
+      })
+
+
+    });
 });
