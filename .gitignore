@@ -6,5 +6,5 @@ node_modules/
 \.vscode/
 
 coverage/
-
+.coveralls.yml
 spec/support/
