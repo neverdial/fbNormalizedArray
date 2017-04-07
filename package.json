@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "main": "fbNormalizedArray.js",
+  "homepage": "https://mohamed-habshey.github.io/fbNormalizedArray/",
   "dependencies": {},
   "devDependencies": {
     "coveralls": "^2.13.0",
