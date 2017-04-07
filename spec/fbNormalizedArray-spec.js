@@ -164,6 +164,47 @@ describe('$fbNormalizedArray', function () {
 
 
     });
+
+    it('should work on Updated', function (done) {
+
+      var ref = stubRef();
+      ref.set(STUB_DATA);
+      var ref1 = ref.child('projects').child("iRehearse-App");
+      var ref2 = ref.child('users');
+
+      var arr
+      return new $fbNormalizedArray(ref1, ref2)
+
+        .then(function (res) {
+
+          arr = res;
+          expect(res[0].$id).toBe("James Gardner");
+          expect(res[0].$value.role).toBe("CTO")
+          return expect(res[0].$extData.email).toBe("jawgardner@gmail.com")
+
+
+        }).then(function () {
+          var query = ref.child('projects').child("iRehearse-App").limitToFirst(1);
+          return $firebaseArray(query).$loaded()
+        })
+        .then(function (result) {
+
+          result[0].role = 'CPO';
+
+          return result.$save(0);
+        })
+        .then(function () {
+
+          expect(arr[0].$value.role).toBe("CPO")
+        }).then(function () {
+          return done();
+        });
+
+
+
+
+    }, 10000);
+
   });
 
   function stubRef() {
