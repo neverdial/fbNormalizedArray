@@ -37,6 +37,16 @@ module.exports = function (config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['spec', 'failed', 'coverage'],
 
+    // optionally, configure the reporter
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        // reporters html for us and Icov for coveralls
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' },
+      ]
+    },
+
 
     // web server port
     port: 9876,
