@@ -64,11 +64,35 @@ describe('$fbNormalizedArray', function () {
     }
   };
 
-  it('should ....',
-    function (done) {
+  var arr, $firebaseArray, $timeout, $rootScope, $q, tick, $fbNormalizedArray;
+  beforeEach(function () {
+    module('firebase.database');
+    module('fbNormalizedArray');
+    inject(function (_$firebaseArray_, _$timeout_, _$rootScope_, _$q_, _$fbNormalizedArray_) {
 
-      inject(function ($fbNormalizedArray, $firebaseArray, $rootScope) {
-        //spec body
+      $timeout = _$timeout_;
+      $firebaseArray = _$firebaseArray_;
+      $rootScope = _$rootScope_;
+      $q = _$q_;
+      $fbNormalizedArray = _$fbNormalizedArray_;
+
+      firebase.database.enableLogging(function () { tick() });
+      tick = function () {
+        setTimeout(function () {
+          $q.defer();
+            $rootScope.$digest();
+          try {
+            $timeout.flush();
+          } catch (err) {
+            // This throws an error when there is nothing to flush...
+          }
+        })
+      };
+
+    });
+  });
+
+
       var ref = stubRef();
 
         expect($fbNormalizedArray).toBeDefined();
