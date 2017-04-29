@@ -1,0 +1,23 @@
+{
+  "name": "fbNormalizedArray",
+  "version": "0.0.0",
+  "description": "",
+  "main": "fbNormalizedArray.js",
+  "homepage": "https://mohamed-habshey.github.io/fbNormalizedArray/",
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.13.0",
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-failed-reporter": "0.0.3",
+    "karma-jasmine": "^1.1.0",
+    "karma-spec-reporter": "0.0.30"
+  },
+  "scripts": {
+    "test": "karma start"
+  },
+  "author": "Mohamed Habashy (mohamed.habshey10@gmail.com)",
+  "license": "ISC"
+}
